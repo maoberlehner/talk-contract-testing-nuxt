@@ -1,0 +1,19 @@
+{
+  "name": "presentation",
+  "private": true,
+  "scripts": {
+    "build": "slidev build",
+    "dev": "slidev",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@slidev/cli": "0.40.5",
+    "@slidev/theme-apple-basic": "^0.20.0",
+    "@slidev/theme-default": "*",
+    "@slidev/theme-seriph": "*",
+    "vue-tweet": "^2.0.2"
+  },
+  "devDependencies": {
+    "playwright-chromium": "^1.34.3"
+  }
+}
