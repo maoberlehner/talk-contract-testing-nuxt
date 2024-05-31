@@ -49,6 +49,16 @@ layout: statement
 <img src="/images/the-application-2.png" style="width:660px">
 
 ---
+layout: intro
+---
+
+<ul class="leading-17" style="list-style-type:none;">
+  <li>Monoliths, SPAs, and Microservices</li>
+  <li>API First and Contract Testing</li>
+  <li>Playwright and Specmatic Stub Server</li>
+</ul>
+
+---
 layout: statement
 ---
 
@@ -59,7 +69,7 @@ layout: intro
 ---
 
 <ul class="leading-17" style="list-style-type:none;">
-  <li>Laravel or Nuxt + Database</li>
+  <li>Laravel, Ruby on Rails, or Nuxt + Database</li>
   <li>Database Seeding</li>
 </ul>
 

@@ -37,6 +37,10 @@ h1 {
   background-color: #02B3E2;
 }
 
+.slidev-layout.intro {
+  display: flex;
+}
+
 .twitter-tweet {
   margin-right: auto;
   margin-left: auto;
@@ -49,4 +53,9 @@ video[controls]::-webkit-media-controls-panel {
 
 video[controls]::-webkit-media-controls-timeline {
   opacity: 1 !important;
+}
+
+.slidev-code {
+  font-size: 1.25rem !important;
+  background-color: transparent !important;
 }
