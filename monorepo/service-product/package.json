@@ -5,7 +5,7 @@
   "scripts": {
     "build": "npm run contract:schema && esbuild index.ts --bundle --platform=node --outdir=dist",
     "start": "node dist/index.js",
-    "test:contract": "docker run --rm -it -v ${PWD}/:/app -p specmatic test ./contract/service-product.yaml --testBaseURL=http://host.docker.internal:3333",
+    "contract:test": "docker run --rm -it -v ${PWD}/:/app specmatic test ./contract/service-product.yaml --testBaseURL=http://host.docker.internal:3333",
     "contract:schema": "openapi-typescript ./contract/service-product.yaml -o ./specification.d.ts",
     "contract:validate": "docker run --rm -it -v ${PWD}/:/app -v ${PWD}/../contract-store/examples/:/app/examples specmatic examples validate --specs-dir ./contract --examples-base-dir ./examples",
     "contract:publish": "rm -Rf ../contract-store/service-product && cp -R ./contract/ ../contract-store/service-product"
