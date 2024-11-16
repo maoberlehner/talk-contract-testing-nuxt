@@ -1,0 +1,13 @@
+{
+  "http-request": {
+    "path": "/products",
+    "method": "GET"
+  },
+  "http-response": {
+    "status": 200,
+    "body": [
+      { "id": "a2eb6544-521c-494f-aec8-b48ccc148ecc", "name": "Milk" },
+      { "id": "b2eb6544-521c-494f-aec8-b48ccc148ecc", "name": "Bread" }
+    ]
+  }
+}

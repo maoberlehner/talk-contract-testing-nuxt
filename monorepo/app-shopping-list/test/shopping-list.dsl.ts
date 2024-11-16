@@ -4,41 +4,34 @@ import { expect, type Page } from '@playwright/test';
 
 import type { Item } from '~/entities/item';
 
-const itemsDefault: Item[] = [
-  { id: 'a2eb6544-521c-494f-aec8-b48ccc148ecc', name: 'Milk' },
-  { id: 'b2eb6544-521c-494f-aec8-b48ccc148ecc', name: 'Bread' },
-];
+import productsGet200 from './contract/service-product_examples/products_GET_200.json' assert { type: 'json' };
+import productsPost200 from './contract/service-product_examples/products_POST_200.json' assert { type: 'json' };
 
-const hasItems = async (items: Item[] = itemsDefault) => {
-  await fetch('http://localhost:9000/_specmatic/expectations', {
+const STUB_URL = 'http://localhost:9000/_specmatic/expectations';
+
+const hasItems = async (items?: Item[]) => {
+  const body = items
+    ? {
+        ...productsGet200,
+        'http-response': { ...productsGet200['http-response'], body: items },
+      }
+    : productsGet200;
+  await fetch(STUB_URL, {
     method: 'POST',
-    body: JSON.stringify({
-      'http-request': {
-        method: 'GET',
-        path: '/products',
-      },
-      'http-response': {
-        status: 200,
-        body: items,
-      },
-    }),
+    body: JSON.stringify(body),
   });
 };
 
 const canAddItem = async (name: Item['name']) => {
   const item = { id: randomUUID(), name };
-  await fetch('http://localhost:9000/_specmatic/expectations', {
+  const body = {
+    ...productsPost200,
+    'http-request': { ...productsPost200['http-request'], body: { name } },
+    'http-response': { ...productsPost200['http-response'], body: item },
+  };
+  await fetch(STUB_URL, {
     method: 'POST',
-    body: JSON.stringify({
-      'http-request': {
-        method: 'POST',
-        path: '/products',
-      },
-      'http-response': {
-        status: 200,
-        body: item,
-      },
-    }),
+    body: JSON.stringify(body),
   });
   return item;
 };
@@ -51,7 +44,7 @@ export const makeShoppingList = async (page: Page) => {
     },
     async addNewItem(name: Item['name']) {
       const item = await canAddItem(name);
-      await hasItems([...itemsDefault, item]);
+      await hasItems([...productsGet200['http-response'].body, item]);
 
       await page.getByLabel('name').fill(name);
       await page.getByRole('button', { name: 'Add item' }).click();

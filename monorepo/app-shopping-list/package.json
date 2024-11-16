@@ -8,18 +8,20 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "stub": "docker run --rm -it -v $HOME/.ssh:/root/.ssh -v /var/run/docker.sock:/var/run/docker.sock -v ${PWD}/../:/app -p 9000:9000 specmatic stub ./contract-store"
+    "stub": "docker run --rm -it -p 9000:9000 -v ${PWD}/../:/app specmatic stub ./contract-store",
+    "contract:validate": "docker run --rm -it -v ${PWD}/../:/app -v ${PWD}/test/contract/:/app/examples specmatic examples validate --specs-dir ./contract-store --examples-base-dir ./examples",
+    "contract:publish": "npm run contract:validate && rm -Rf ../contract-store/examples/app-shopping-list && cp -R ./test/contract/ ../contract-store/examples/app-shopping-list"
   },
   "dependencies": {
-    "nuxt": "^3.11.1",
-    "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "nuxt": "^3.14.159",
+    "vue": "^3.5.13",
+    "vue-router": "^4.4.5"
   },
   "devDependencies": {
-    "@playwright/test": "^1.42.1",
-    "@types/node": "^20.12.2",
-    "autoprefixer": "^10.4.19",
-    "postcss": "^8.4.38",
-    "tailwindcss": "^3.4.3"
+    "@playwright/test": "^1.48.2",
+    "@types/node": "^22.1.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15"
   }
 }
