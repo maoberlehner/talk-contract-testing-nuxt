@@ -1,0 +1,16 @@
+{
+  "http-request": {
+    "path": "/products/Butter",
+    "method": "PUT",
+    "body": {
+      "name": "Bread"
+    }
+  },
+  "http-response": {
+    "status": 200,
+    "body": {
+      "id": "(uuid)",
+      "name": "Bread"
+    }
+  }
+}

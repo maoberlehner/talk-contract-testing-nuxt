@@ -1,7 +1,8 @@
 export default defineEventHandler(async (event) => {
+  const config = useRuntimeConfig(event);
   const item = await readBody(event);
 
-  const data = await $fetch('http://localhost:9000/products', {
+  const data = await $fetch(`${config.serviceProductUrl}/products`, {
     method: 'POST',
     body: item,
   });

@@ -8,4 +8,7 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  runtimeConfig: {
+    serviceProductUrl: 'http://localhost:3333',
+  },
 });

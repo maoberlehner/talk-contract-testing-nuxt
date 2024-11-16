@@ -1,0 +1,22 @@
+{
+  "name": "service-product",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run contract:schema && esbuild index.ts --bundle --platform=node --outdir=dist",
+    "start": "node dist/index.js",
+    "test:contract": "docker run --rm -it -v $HOME/.ssh:/root/.ssh -v /var/run/docker.sock:/var/run/docker.sock -v ${PWD}/:/app -p 9000:9000 specmatic test ./contract/product-service.yaml --testBaseURL=http://host.docker.internal:3333",
+    "contract:schema": "openapi-typescript ./contract/product-service.yaml -o ./specification.d.ts",
+    "contract:publish": "rm -Rf ../contract-store/product-service && cp -R ./contract/ ../contract-store/product-service"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.7",
+    "esbuild": "^0.24.0",
+    "hono": "^4.6.10"
+  },
+  "devDependencies": {
+    "@types/node": "^22.8.4",
+    "openapi-typescript": "^7.4.3",
+    "typescript": "^5.6.3"
+  }
+}

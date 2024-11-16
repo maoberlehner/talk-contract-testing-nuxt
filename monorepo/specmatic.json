@@ -1,0 +1,8 @@
+{
+  "sources": [
+    {
+      "provider": "filesystem",
+      "provides": ["./contract-store/service-product.yaml"]
+    }
+  ]
+}

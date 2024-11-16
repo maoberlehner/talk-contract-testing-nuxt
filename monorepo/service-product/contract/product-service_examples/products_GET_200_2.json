@@ -1,0 +1,15 @@
+{
+  "http-request": {
+    "path": "/products",
+    "method": "GET"
+  },
+  "http-response": {
+    "status": 200,
+    "body": [
+      {
+        "id": "(uuid)",
+        "name": "Butter"
+      }
+    ]
+  }
+}

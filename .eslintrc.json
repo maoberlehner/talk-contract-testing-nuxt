@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/stylistic"
+  ],
+  "plugins": ["simple-import-sort"],
+  "rules": {
+    "@typescript-eslint/consistent-type-imports": "error",
+    "simple-import-sort/imports": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error"
+  }
+}

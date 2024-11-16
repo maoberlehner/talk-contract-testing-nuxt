@@ -1,0 +1,10 @@
+FROM amazoncorretto:22-alpine
+
+WORKDIR /specmatic
+
+ADD https://github.com/znsio/specmatic/releases/download/2.0.34/specmatic.jar /specmatic/specmatic.jar
+RUN chmod +x /specmatic/specmatic.jar
+
+WORKDIR /app
+
+ENTRYPOINT ["java", "-jar", "/specmatic/specmatic.jar"]

@@ -16,6 +16,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Product'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
     post:
       summary: Create a new product
       requestBody:
@@ -23,7 +29,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Product'
+              $ref: '#/components/schemas/ProductData'
       responses:
         '201':
           description: The created product
@@ -31,16 +37,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Product'
-  /products/{productId}:
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /products/{productName}:
     get:
-      summary: Get a product by ID
+      summary: Get a product by name
       parameters:
-        - name: productId
+        - name: productName
           in: path
           required: true
           schema:
             type: string
-          description: The ID of the product to get
+          description: The name of the product to get
       responses:
         '200':
           description: The product
@@ -48,21 +60,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Product'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
     put:
-      summary: Update a product by ID
+      summary: Update a product by name
       parameters:
-        - name: productId
+        - name: productName
           in: path
           required: true
           schema:
             type: string
-          description: The ID of the product to update
+          description: The name of the product to update
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Product'
+              $ref: '#/components/schemas/ProductData'
       responses:
         '200':
           description: The updated product
@@ -70,6 +88,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Product'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 components:
   schemas:
     Product:
@@ -82,4 +106,24 @@ components:
         name:
           type: string
       required:
+        - id
         - name
+    ProductData:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+        - name
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Error message
+      required:
+        - code
+        - message

@@ -1,4 +1,5 @@
-export default defineEventHandler(async () => {
-  const data = await $fetch('http://localhost:9000/products');
+export default defineEventHandler(async (event) => {
+  const config = useRuntimeConfig(event);
+  const data = await $fetch(`${config.serviceProductUrl}/products`);
   return { data };
 });
