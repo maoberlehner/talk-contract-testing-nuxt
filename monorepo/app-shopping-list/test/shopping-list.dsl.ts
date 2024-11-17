@@ -16,10 +16,14 @@ const hasItems = async (items?: Item[]) => {
         'http-response': { ...productsGet200['http-response'], body: items },
       }
     : productsGet200;
-  await fetch(STUB_URL, {
+  const response = await fetch(STUB_URL, {
     method: 'POST',
     body: JSON.stringify(body),
   });
+
+  if (!response.ok) {
+    throw new Error(`Failed to set expectations: ${await response.text()}`);
+  }
 };
 
 const canAddItem = async (name: Item['name']) => {
@@ -29,10 +33,15 @@ const canAddItem = async (name: Item['name']) => {
     'http-request': { ...productsPost200['http-request'], body: { name } },
     'http-response': { ...productsPost200['http-response'], body: item },
   };
-  await fetch(STUB_URL, {
+  const response = await fetch(STUB_URL, {
     method: 'POST',
     body: JSON.stringify(body),
   });
+
+  if (!response.ok) {
+    throw new Error(`Failed to set expectations: ${await response.text()}`);
+  }
+
   return item;
 };
 

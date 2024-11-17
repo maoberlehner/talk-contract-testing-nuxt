@@ -3,7 +3,6 @@ theme: apple-basic
 layout: statement
 colorSchema: light
 highlighter: shiki
-lineNumbers: true
 drawings:
   persist: false
 ---
@@ -164,6 +163,24 @@ layout: statement
 <img src="/images/monolithic-architecture.png" style="width:380px">
 
 ---
+layout: statement
+---
+
+<img src="/images/microservices-architecture.png" style="width:580px">
+
+---
+layout: statement
+---
+
+<h1><span class="accent">Monolithic</span><br>Architecture</h1>
+
+---
+layout: statement
+---
+
+<img src="/images/monolithic-architecture.png" style="width:380px">
+
+---
 layout: intro
 ---
 
@@ -177,19 +194,6 @@ layout: statement
 ---
 
 <img src="/images/monolithic-architecture-test.png" style="width:580px">
-
----
-layout: intro
----
-
-```php
-// Database seeding in Laravel
-it('should be possible to remove an item', function () {
-    $this->seed(ItemSeeder::class);
- 
-    // ...
-});
-```
 
 ---
 layout: intro
@@ -213,6 +217,12 @@ it('should be possible to remove an item', async () => {
 layout: statement
 ---
 
+<h1><span class="accent">Microservices</span><br>Architecture</h1>
+
+---
+layout: statement
+---
+
 <img src="/images/microservices-architecture.png" style="width:580px">
 
 ---
@@ -222,10 +232,20 @@ layout: statement
 <img src="/images/microservices-architecture-test-mocks.png" style="width:580px">
 
 ---
-layout: statement
+layout: intro
 ---
 
-TODO example code
+```ts {all|4}
+// Mocking with Playwright
+it('should be possible to remove an item', () => [
+  await page.route('https://items.xyz.com/items', async route => {
+    const json = [{ name: 'Butter', id: 1 }];
+    await route.fulfill({ json });
+  });
+
+  // ...
+]);
+```
 
 ---
 layout: statement
@@ -291,60 +311,29 @@ layout: statement
 layout: statement
 ---
 
-TODO CODE showing that we can't use playwright mocking features to mock requests from BFF to Microservices
+<img src="/images/direct-api-calls.png" style="width:680px">
 
 ---
 layout: statement
 ---
 
-TODO nuxt example
-
----
-layout: intro
----
-
-<ol class="leading-17">
-  <li>We're not testing the whole application!</li>
-</ol>
-
-TODO explain problem with microservice changing but mocks stay the same and test does not break
-
----
-layout: intro
----
-
-<ol class="leading-17">
-  <li>We're not testing the whole application!</li>
-  <li v-click>Do (not) break on microservice API changes</li>
-</ol>
+<img src="/images/nuxt-architecture.png" style="width:680px">
 
 ---
 layout: statement
 ---
 
-<h1>Don't Mock Requests<br>from <span class="accent">Applications to Microservices!</span></h1>
-
----
-layout: statement
----
-
-# <span class="accent">SPAs</span>
-
----
-layout: statement
----
-
-<img src="/images/spa.png" style="width:620px">
+<h1>Mocking Network Requests<br>Is Not Feasible when Using<br><span class="accent">the BFF Pattern!</span></h1>
 
 ---
 layout: intro
 ---
 
 ```ts
-// Mocking with Playwright
 it('should be possible to remove an item', () => [
-  await page.route('*/**/api/items', async route => {
-    const json = [{ name: 'Butter', id: 1 }];
+  await page.route('https://items.xyz.com/items', async route => {
+    const json = [{ name: 'Butter', id: 1 }];  // [!code --]
+    const json = [{ title: 'Butter', id: 1 }];  // [!code ++]
     await route.fulfill({ json });
   });
 
@@ -356,107 +345,25 @@ it('should be possible to remove an item', () => [
 layout: statement
 ---
 
-# SSR Applications<br>and <span class="accent">Microservices</span>
+<h1>Mocked Tests do (not)<br><span class="accent">Break on API Changes!</span></h1>
 
 ---
 layout: statement
 ---
 
-<img src="/images/ssr-app.png" style="width:620px">
+<h1><span class="accent">Contract Testing</span><br>to the Rescue</h1>
 
 ---
 layout: statement
 ---
 
-<img src="/images/ssr-app-2.png" style="width:620px">
+<img src="/images/shopping-list-app.png" style="width:680px">
 
 ---
 layout: statement
 ---
 
-<img src="/images/everything-app.png" style="width:620px">
-
----
-layout: statement
----
-
-# <span class="accent">Contract</span> Testing
-
----
-layout: statement
----
-
-<img src="/images/contract.png" style="width:500px">
-
----
-layout: intro
----
-
-```yaml
-openapi: 3.0.0
-info:
-  title: Product Service
-  description: A service for managing products
-paths:
-  /products:
-    get:
-      responses:
-        '200':
-          description: A list of products
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Product'
-```
-
----
-layout: intro
----
-
-```yaml
-components:
-  schemas:
-    Product:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          readOnly: true
-        name:
-          type: string
-      required:
-        - name
-```
-
----
-layout: statement
----
-
-<img src="/images/everything-app.png" style="width:620px">
-
----
-layout: statement
----
-
-<img src="/images/stub-server.png" style="width:620px">
-
----
-layout: intro
----
-
-<ol class="leading-17">
-  <li>API First & OpenAPI</li>
-  <li>Specmatic Stub Server</li>
-</ol>
-
----
-layout: statement
----
-
-<h1>Don't Mock Requests<br>from <span class="accent">SPA to BFF!</span></h1>
+<img src="/images/contract-testing-setup.png" style="width:640px">
 
 ---
 layout: statement

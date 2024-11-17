@@ -2,7 +2,18 @@ html,
 body,
 #app,
 #page-root {
-  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family:
+    "SF Pro Display",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol";
   font-weight: 500;
 }
 
@@ -24,17 +35,17 @@ h1 {
 }
 
 .accent {
-  color: #02B3E2;
+  color: #02b3e2;
 }
 
 .slidev-layout:not([layout="image"])::after {
-  content: '';
+  content: "";
   position: fixed;
   right: 0;
   bottom: 0;
   left: 0;
   height: 0.65rem;
-  background-color: #02B3E2;
+  background-color: #02b3e2;
 }
 
 .slidev-layout.intro {
@@ -58,4 +69,31 @@ video[controls]::-webkit-media-controls-timeline {
 .slidev-code {
   font-size: 1.25rem !important;
   background-color: transparent !important;
+}
+
+.diff {
+  transition: background-color 0.5s;
+  width: 100%;
+  display: inline-block;
+}
+
+.diff.remove {
+  background-color: rgba(244, 63, 94, 0.16);
+  opacity: 0.6;
+}
+
+.diff.remove::before {
+  position: absolute;
+  content: "-";
+  color: #cb7676;
+}
+
+.diff.add {
+  background-color: rgba(16, 185, 129, 0.16);
+}
+
+.diff.add::before {
+  position: absolute;
+  content: "+";
+  color: #3dd68c;
 }
