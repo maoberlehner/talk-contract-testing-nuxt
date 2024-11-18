@@ -106,15 +106,8 @@ layout: intro
 
 <div class="leading-17 mt-10">
   Bluesky: <a href="https://bsky.app/profile/markus.oberlehner.net">@markus.oberlehner.net</a><br>
-  X: <a href="https://twitter.com/MaOberlehner">@maoberlehner</a><br>
   Book: <a href="https://goodvuetests.com">goodvuetests.com</a>
 </div>
-
----
-layout: intro
----
-
-TODO image
 
 ---
 layout: intro
@@ -125,24 +118,6 @@ layout: intro
   <li style="text-decoration: line-through;" v-click>❌ Components Tests</li>
   <li v-click>✅ Application Tests</li>
 </ol>
-
----
-layout: statement
----
-
-<img src="/images/application-test_001.png" style="width:660px">
-
----
-layout: statement
----
-
-<img src="/images/application-test_002.png" style="width:660px">
-
----
-layout: statement
----
-
-<img src="/images/application-test_003.png" style="width:660px">
 
 ---
 layout: statement
@@ -199,7 +174,7 @@ layout: statement
 layout: intro
 ---
 
-```ts
+```ts {all|2|3-8}
 // Database seeding with Prisma
 it('should be possible to remove an item', async () => {
     await prisma.item.createMany({
@@ -235,11 +210,14 @@ layout: statement
 layout: intro
 ---
 
-```ts {all|4}
+```ts {all|2|3|4-7}
 // Mocking with Playwright
 it('should be possible to remove an item', () => [
   await page.route('https://items.xyz.com/items', async route => {
-    const json = [{ name: 'Butter', id: 1 }];
+    const json = [
+      { name: 'Bread', id: 1 },
+      { name: 'Butter', id: 2 },
+    ];
     await route.fulfill({ json });
   });
 
@@ -270,12 +248,6 @@ layout: statement
 ---
 
 <img src="/images/system-spa-bff.png" style="width:680px">
-
----
-layout: statement
----
-
-<img src="/images/system-spa-bff-test_001.png" style="width:680px">
 
 ---
 layout: statement
@@ -323,7 +295,7 @@ layout: statement
 layout: statement
 ---
 
-<h1>Mocking Network Requests<br>Is Not Feasible when Using<br><span class="accent">the BFF Pattern!</span></h1>
+<h1>Mocking Doesn’t Work<br>with the <span class="accent">BFF Pattern!</span></h1>
 
 ---
 layout: intro
@@ -332,8 +304,12 @@ layout: intro
 ```ts
 it('should be possible to remove an item', () => [
   await page.route('https://items.xyz.com/items', async route => {
-    const json = [{ name: 'Butter', id: 1 }];  // [!code --]
-    const json = [{ title: 'Butter', id: 1 }];  // [!code ++]
+    const json = [
+      { name: 'Bread', id: 1 }, // [!code --]
+      { name: 'Butter', id: 2 }, // [!code --]
+      { title: 'Bread', id: 1 }, // [!code ++]
+      { title: 'Butter', id: 2 }, // [!code ++]
+    ];
     await route.fulfill({ json });
   });
 
@@ -377,10 +353,13 @@ layout: intro
 
 <div class="leading-8">
   <span class="font-extrabold">Markus Oberlehner</span><br>
-  <span style="font-size:0.5em;">Senior Full-stack Developer</span>
+  <span style="font-size:0.5em;">Software Engineer @ Austrian Federal Computing Centre</span>
 </div>
 
+<img src="/images/qr.png" style="width:280px;position:absolute;top:36px;right:36px;">
+
 <div class="leading-17 mt-10">
-  Twitter: <a href="https://twitter.com/MaOberlehner">@maoberlehner</a><br>
-  Book: <a href="https://goodvuetests.com">goodvuetests.com</a>
+  Bluesky: <a href="https://bsky.app/profile/markus.oberlehner.net">@markus.oberlehner.net</a><br>
+  Book: <a href="https://goodvuetests.com">goodvuetests.com</a><br><br>
+  <small><a href="https://github.com/maoberlehner/talk-contract-testing-nuxt">github.com/maoberlehner/talk-contract-testing-nuxt</a></small>
 </div>

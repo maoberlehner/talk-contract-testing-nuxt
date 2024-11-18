@@ -6,6 +6,6 @@ it('should be possible to add a new item', async ({ page }) => {
   const shoppingList = await makeShoppingList(page);
 
   await shoppingList.open();
-  await shoppingList.addNewItem('Butter');
-  await shoppingList.expectItem('Butter');
+  await shoppingList.addNewItem('Milk');
+  await shoppingList.expectItem('Milk');
 });

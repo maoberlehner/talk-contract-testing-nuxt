@@ -2,6 +2,8 @@
 
 > How to Use Contracts to Write Better Tests for Nuxt Applications
 
+Slides: https://talk-contract-testing-nuxt.netlify.app/
+
 ## Demo
 
 ```bash
